@@ -122,7 +122,7 @@ const users = {
   }
 
 app.get('/',(req, res) => {
-    res.send('<h1>hit /taskTypes to access</h1> <h1>hit /UserActivities to access</h1> <h1>hit /Completed to access</h1> <h1>hit /ToDoes to access</h1>')
+    res.send('<h1>hit /taskTypes to access</h1> <h1>hit /UserActivities to access</h1> <h1>hit /Completed to access</h1> <h1>hit /ToDoes to access</h1> <h1>hit /todos:id to access</h1>')
    
 })
 
