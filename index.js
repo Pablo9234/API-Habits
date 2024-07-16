@@ -56,7 +56,7 @@ app.get('/taskTypes',(req,res) => {
 })
 
 app.get('/',(req, res) => {
-    res.send('Hello world!!')
+    res.send('<h1>hit /taskTypes to access</h1>')
 })
 
 app.listen(port, () => {
