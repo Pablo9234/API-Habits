@@ -134,11 +134,15 @@ app.get('/UserActivities',(req,res) => {
     res.send(users)
 })
 
-app.get('/Completed', (req,res) =>{
+app.get('/completed', (req,res) =>{
     res.json(users.completed)
 })
 
-app.get('/ToDoes', (req,res) => {
+app.get('/todoes', (req,res) => {
+    res.json(users.todos)
+})
+
+app.get('/todos', (req,res) => {
     res.json(users.todos)
 })
 
