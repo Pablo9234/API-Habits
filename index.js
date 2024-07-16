@@ -142,6 +142,20 @@ app.get('/ToDoes', (req,res) => {
     res.json(users.todos)
 })
 
+app.get('/todos/:id',(req,res) => {
+    const id = Number(req.params.id)
+    const result = users.todos.find(x => {
+        return x.id === id
+    })
+
+    if(result)(
+        res.json(result)
+    )
+    else{
+        res.status(404).send('Not found')
+    }
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
