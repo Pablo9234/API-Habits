@@ -115,14 +115,14 @@ const users = {
         "streak": 5,
         "repeat": "3 days per week",
         "icon": "kitchen",
-        "bg-imageID": "kitchenBG",
+        "bgimageID": "kitchenBG",
         "description": "Wash dishes and mop the floor"
       }
     ]
   }
 
 app.get('/',(req, res) => {
-    res.send('<h1>hit /taskTypes to access</h1> <h1>hit /UserActivities to access</h1>')
+    res.send('<h1>hit /taskTypes to access</h1> <h1>hit /UserActivities to access</h1> <h1>hit /Completed to access</h1> <h1>hit /ToDoes to access</h1>')
    
 })
 
@@ -132,6 +132,14 @@ app.get('/taskTypes',(req,res) => {
 
 app.get('/UserActivities',(req,res) => {
     res.send(users)
+})
+
+app.get('/Completed', (req,res) =>{
+    res.json(users.completed)
+})
+
+app.get('/ToDoes', (req,res) => {
+    res.json(users.todos)
 })
 
 app.listen(port, () => {
