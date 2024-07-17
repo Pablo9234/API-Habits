@@ -1,6 +1,8 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+app.use(express.json());
+const app = express();
+const port = 3000;
+
 
 const taskTypes = [
     {
@@ -159,6 +161,19 @@ app.get('/todos/:id',(req,res) => {
         res.status(404).send('Not found')
     }
 })
+
+app.post('/todos', (req, res) => {
+
+    const newTask =  req.body;
+    const newId = users.todos.length + 1;
+    newTask.id = newId;
+    users.todos.push(newTask);
+    res.status(201).json(newTask)
+    console.log(newTask);
+    console.log(req)
+})
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
