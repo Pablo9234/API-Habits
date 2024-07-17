@@ -2,10 +2,11 @@ POST http://localhost:3000/Todos
 Content-Type: aplication/json
 
 {
-        "id": 3,
+        "id": ,
         "type": "study",
         "task": "Study Time",
         "streak": 5,
         "repeat": "5 days per week",
-        "bg-imageID": "studyBG",
+        "bgimageID": "studyBG",
+        "description": "Sxxx"
 }

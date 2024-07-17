@@ -1,10 +1,9 @@
 const express = require('express');
-app.use(express.json());
 const app = express();
 const port = 3000;
+app.use(express.json());
 
-
-const taskTypes = [
+let taskTypes = [
     {
         "id": 1,
         "type": "chores",
@@ -53,7 +52,7 @@ const taskTypes = [
     }
 ]
 
-const users = {
+let users = {
     "todos": [
       {
         "id": 1,
@@ -61,7 +60,7 @@ const users = {
         "task": "Drink 2L of water",
         "streak": 5,
         "repeat": "Everyday",
-        "bg-imageID": "waterBG",
+        "bgimageID": "waterBG",
         "description": "Stad hydrateded, stay energised"
     },
     {
@@ -70,7 +69,7 @@ const users = {
         "task": "Workout",
         "streak": 5,
         "repeat": "5 days per week",
-        "bg-imageID": "gymBG",
+        "bgimageID": "gymBG",
         "description": "Stay strong, be a man"
     },
     {
@@ -79,7 +78,7 @@ const users = {
         "task": "Study Time",
         "streak": 5,
         "repeat": "5 days per week",
-        "bg-imageID": "studyBG",
+        "bgimageID": "studyBG",
         "description": "A wise man always will be prepared"
     },
     {
@@ -88,7 +87,7 @@ const users = {
         "task": "chill out",
         "streak": 5,
         "repeat": "5 days per week",
-        "bg-imageID": "chilloutBG",
+        "bgimageID": "chilloutBG",
         "description": "Get energy up, back to work"
     },
     {
@@ -97,7 +96,7 @@ const users = {
         "task": "Work",
         "streak": 5,
         "repeat": "5 days per week",
-        "bg-imageID": "workBG",
+       "bgimageID": "workBG",
         "description": "Getting on hard work"
     },
     {
@@ -106,7 +105,7 @@ const users = {
         "task": "health",
         "streak": 5,
         "repeat": "5 days per week",
-        "bg-imageID": "healthBG",
+        "bgimageID": "healthBG",
         "description": "Keep up health, long life"
     }
     ],
@@ -163,14 +162,19 @@ app.get('/todos/:id',(req,res) => {
 })
 
 app.post('/todos', (req, res) => {
+    const newTask = {
+        "id": users.todos.length + 1,
+        "type": req.body.type,
+        "task": req.body.task,
+        "streak": req.body.streak,
+        "repeat": req.body.repeat,
+        "bgimageID": req.body.bgimageID,
+        "description":  req.body.description
+    }
+    users.todos.push(newTask)
+    res.json(users)
 
-    const newTask =  req.body;
-    const newId = users.todos.length + 1;
-    newTask.id = newId;
-    users.todos.push(newTask);
-    res.status(201).json(newTask)
-    console.log(newTask);
-    console.log(req)
+    console.log(newTask)
 })
 
 
