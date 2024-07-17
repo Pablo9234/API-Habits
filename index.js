@@ -53,7 +53,7 @@ let taskTypes = [
     }
 ]
 
-let users = {
+let task = {
     "todos": [
       {
         "id": 1,
@@ -133,24 +133,24 @@ app.get('/taskTypes',(req,res) => {
 })
 
 app.get('/UserActivities',(req,res) => {
-    res.send(users)
+    res.send(task)
 })
 
 app.get('/completed', (req,res) =>{
-    res.json(users.completed)
+    res.json(task.completed)
 })
 
 app.get('/todoes', (req,res) => {
-    res.json(users.todos)
+    res.json(task.todos)
 })
 
 app.get('/todos', (req,res) => {
-    res.json(users.todos)
+    res.json(task.todos)
 })
 
 app.get('/todos/:id',(req,res) => {
     const id = Number(req.params.id)
-    const result = users.todos.find(x => {
+    const result = task.todos.find(x => {
         return x.id === id
     })
 
@@ -164,7 +164,7 @@ app.get('/todos/:id',(req,res) => {
 
 app.post('/todos', (req, res) => {
     const newTask = {
-        id: users.todos.length + 1, 
+        id: task.todos.length + 1, 
         type: req.body.type,
         task: req.body.task,
         streak: req.body.streak,
@@ -172,10 +172,26 @@ app.post('/todos', (req, res) => {
         bgimageID: req.body.bgimageID,
         description: req.body.description
     };
-
-    users.todos.push(newTask); 
+    console.log(task.todos)
+    task.todos.push(newTask); 
 });
 
+app.delete('/todos/:id', (req, res) => {
+    const id = Number(req.params.id);
+    const index = task.todos.findIndex(x => x.id === id);
+
+    if (index !== -1) {
+        const deletedTask = task.todos.splice(index, 1);
+        res.json({
+            message: 'Task deleted',
+            deletedTask: deletedTask[0]
+        });
+    } else {
+        res.status(404).json({ message: 'Task not found' });
+    }
+    
+    console.log(task)
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
