@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 app.use(express.json());
+const port = 3000;
+
 
 let taskTypes = [
     {
@@ -163,20 +164,17 @@ app.get('/todos/:id',(req,res) => {
 
 app.post('/todos', (req, res) => {
     const newTask = {
-        "id": users.todos.length + 1,
-        "type": req.body.type,
-        "task": req.body.task,
-        "streak": req.body.streak,
-        "repeat": req.body.repeat,
-        "bgimageID": req.body.bgimageID,
-        "description":  req.body.description
-    }
-    users.todos.push(newTask)
-    res.json(users)
+        id: users.todos.length + 1, 
+        type: req.body.type,
+        task: req.body.task,
+        streak: req.body.streak,
+        repeat: req.body.repeat,
+        bgimageID: req.body.bgimageID,
+        description: req.body.description
+    };
 
-    console.log(newTask)
-})
-
+    users.todos.push(newTask); 
+});
 
 
 app.listen(port, () => {

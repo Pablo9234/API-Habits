@@ -1,8 +1,7 @@
-POST http://localhost:3000/Todos
-Content-Type: aplication/json
+POST http://localhost:3000/todos
+Content-Type: application/json
 
 {
-        "id": ,
         "type": "study",
         "task": "Study Time",
         "streak": 5,
@@ -10,3 +9,4 @@ Content-Type: aplication/json
         "bgimageID": "studyBG",
         "description": "Sxxx"
 }
+
